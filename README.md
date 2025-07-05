@@ -1,3 +1,11 @@
+<p align="center">
+  <!-- Keep these links. Translations will automatically update with the README. -->
+  <a href="https://www.readme-i18n.com/FlyAIBox/LLM-101?lang=ja">日本語</a> |  
+  <a href="https://www.readme-i18n.com/FlyAIBox/LLM-101?lang=eh">English</a>
+</p>
+
+<hr/>
+
 ## 《零基础实战大模型》实战项目列表
 
 | **模块**   | **章节标题**                                       | 链接                                                         |

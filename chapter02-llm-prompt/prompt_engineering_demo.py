@@ -60,19 +60,19 @@ class PromptEngineeringDemo:
         """少样本学习示例"""
         prompt = f"""请分析以下文本的情感倾向。
 
-示例：
-文本：今天天气真好，心情很愉快！
-情感：积极
+                    示例：
+                    文本：今天天气真好，心情很愉快！
+                    情感：积极
 
-文本：这部电影太无聊了，浪费时间。
-情感：消极
+                    文本：这部电影太无聊了，浪费时间。
+                    情感：消极
 
-文本：今天是周一，开始新的一周。
-情感：中性
+                    文本：今天是周一，开始新的一周。
+                    情感：中性
 
-现在请分析：
-文本：{text}
-情感："""
+                    现在请分析：
+                    文本：{text}
+                    情感："""
         
         messages = [
             {"role": "system", "content": "你是一个专业的情感分析助手。"},
@@ -85,14 +85,14 @@ class PromptEngineeringDemo:
         """思维链(CoT)示例"""
         prompt = f"""请分析以下文本的情感倾向。请按照以下步骤进行分析：
 
-1. 首先，识别文本中的关键词和短语
-2. 然后，分析这些词语的情感色彩
-3. 接着，考虑整体语境和语调
-4. 最后，综合判断情感倾向（积极、消极、中性）
+                        1. 首先，识别文本中的关键词和短语
+                        2. 然后，分析这些词语的情感色彩
+                        3. 接着，考虑整体语境和语调
+                        4. 最后，综合判断情感倾向（积极、消极、中性）
 
-文本：{text}
+                        文本：{text}
 
-请逐步分析："""
+                        请逐步分析："""
         
         messages = [
             {"role": "system", "content": "你是一个专业的情感分析助手，善于逐步分析问题。"},
@@ -103,7 +103,12 @@ class PromptEngineeringDemo:
     
     def self_reflection_example(self, text: str) -> str:
         """自我反思示例"""
+        print("🔄 自我反思过程展示：")
+        print("=" * 50)
+        
         # 第一步：初始分析
+        print("📋 第一步：初始分析")
+        print("-" * 30)
         initial_prompt = f"请分析以下文本的情感倾向：\n\n{text}"
         
         messages = [
@@ -112,40 +117,54 @@ class PromptEngineeringDemo:
         ]
         
         initial_response = self.call_llm(messages)
+        print(f"初始分析结果：\n{initial_response}")
+        print("-" * 30)
         
         # 第二步：自我反思和改进
+        print("\n🤔 第二步：自我反思和改进")
+        print("-" * 30)
         reflection_prompt = f"""你刚才的分析结果是：
-{initial_response}
+                            {initial_response}
 
-现在请重新审视这个分析：
-1. 这个分析是否准确？
-2. 有没有遗漏的重要信息？
-3. 是否需要调整结论？
+                            现在请重新审视这个分析：
+                            1. 这个分析是否准确？
+                            2. 有没有遗漏的重要信息？
+                            3. 是否需要调整结论？
 
-请给出你的最终分析结果。
+                            请给出你的最终分析结果。
 
-原文本：{text}"""
+                            原文本：{text}"""
         
         messages = [
             {"role": "system", "content": "你是一个善于自我反思和改进的情感分析助手。"},
             {"role": "user", "content": reflection_prompt}
         ]
         
-        return self.call_llm(messages, temperature=0.3)
+        final_response = self.call_llm(messages, temperature=0.3)
+        print(f"反思改进结果：\n{final_response}")
+        print("-" * 30)
+        
+        # 对比总结
+        print("\n📊 对比总结：")
+        print("🔹 初始分析：更直接，基于第一印象")
+        print("🔹 反思改进：更深入，考虑多个角度，结论更可靠")
+        print("=" * 50)
+        
+        return final_response
     
     def role_playing_example(self, product_description: str) -> str:
         """角色扮演示例"""
         prompt = f"""你现在是一位资深的电商文案专家，拥有10年的营销经验。你的任务是为以下产品写一段吸引人的营销文案。
 
-要求：
-- 突出产品的核心卖点
-- 使用情感化的语言
-- 包含行动号召
-- 文案长度控制在100字以内
+                    要求：
+                    - 突出产品的核心卖点
+                    - 使用情感化的语言
+                    - 包含行动号召
+                    - 文案长度控制在100字以内
 
-产品描述：{product_description}
+                    产品描述：{product_description}
 
-请写出营销文案："""
+                    请写出营销文案："""
         
         messages = [
             {"role": "system", "content": "你是一位经验丰富的电商文案专家，擅长创作有说服力的营销文案。"},
@@ -158,18 +177,18 @@ class PromptEngineeringDemo:
         """结构化输出示例"""
         prompt = f"""请分析以下文本并以JSON格式返回结果：
 
-文本：{text}
+                        文本：{text}
 
-请返回以下格式的JSON：
-{{
-    "sentiment": "积极/消极/中性",
-    "confidence": 0.0-1.0,
-    "keywords": ["关键词1", "关键词2", "关键词3"],
-    "summary": "简短总结",
-    "reasoning": "分析理由"
-}}
+                        请返回以下格式的JSON：
+                        {{
+                            "sentiment": "积极/消极/中性",
+                            "confidence": 0.0-1.0,
+                            "keywords": ["关键词1", "关键词2", "关键词3"],
+                            "summary": "简短总结",
+                            "reasoning": "分析理由"
+                        }}
 
-请确保返回的是有效的JSON格式。"""
+                        请确保返回的是有效的JSON格式。"""
         
         messages = [
             {"role": "system", "content": "你是一个专业的情感分析助手，总是返回结构化的JSON结果。"},

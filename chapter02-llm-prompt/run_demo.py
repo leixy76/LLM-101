@@ -27,7 +27,7 @@ def print_menu():
     print("4.  函数调用(Function Calling)演示")
     print("5.  文档生成器演示")
     print("6.  提示词管理系统演示")
-    print("7.  营销模板应用演示")
+    print("7.  提示词模板演示")
     print("8.  综合技术整合演示")
     print("9.  性能对比分析")
     print("10. 全部演示(按序执行)")
@@ -91,7 +91,7 @@ def run_prompt_manager_demo():
 
 def run_template_demo():
     """运行模板应用演示"""
-    print("🔄 启动营销模板应用演示...")
+    print("🔄 启动提示词模板演示...")
     try:
         import yaml
         from jinja2 import Template
@@ -109,6 +109,7 @@ def run_template_demo():
             
             # 演示产品描述生成
             product_template = templates['product_description']
+            # 使用Jinja2模板引擎创建模板对象，用于渲染包含变量的提示词模板
             jinja_template = Template(product_template['template'])
             
             variables = {
@@ -179,7 +180,7 @@ def run_all_demos():
         ("函数调用", run_function_calling_demo),
         ("文档生成器", run_document_generator_demo),
         ("提示词管理", run_prompt_manager_demo),
-        ("营销模板应用", run_template_demo),
+        ("提示词模板", run_template_demo),
         ("综合技术整合", run_comprehensive_demo),
         ("性能对比分析", run_performance_comparison)
     ]

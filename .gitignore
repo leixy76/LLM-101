@@ -252,7 +252,7 @@ exports/
 # 图表和可视化
 plots/
 figures/
-# *.png
+*.png
 *.jpg
 *.jpeg
 *.gif

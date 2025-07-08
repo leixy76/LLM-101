@@ -321,6 +321,9 @@ python prompt_management/prompt_manager.py
 
 - [OpenAI官方提示词工程指南](https://platform.openai.com/docs/guides/prompt-engineering)
 - [OpenAI 提示词工程的最佳实践](https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-the-openai-api)
+- [精选最好的 AI 提示词](https://www.waytoagi.com/zh/prompts)
 - [LangChain提示词模板](https://python.langchain.com/api_reference/core/prompts.html#langchain-core-prompts)
+- [anthropics/prompt-eng-interactive-tutorial](https://github.com/anthropics/prompt-eng-interactive-tutorial)
+- [Claude官方提示词教程](https://docs.anthropic.com/zh-CN/docs/build-with-claude/prompt-engineering/overview)
 - [思维链论文](https://arxiv.org/abs/2201.11903)
 - [自我反思技术](https://arxiv.org/abs/2303.11366) 

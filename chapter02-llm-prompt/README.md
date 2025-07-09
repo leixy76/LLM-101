@@ -325,5 +325,6 @@ python prompt_management/prompt_manager.py
 - [LangChain提示词模板](https://python.langchain.com/api_reference/core/prompts.html#langchain-core-prompts)
 - [anthropics/prompt-eng-interactive-tutorial](https://github.com/anthropics/prompt-eng-interactive-tutorial)
 - [Claude官方提示词教程](https://docs.anthropic.com/zh-CN/docs/build-with-claude/prompt-engineering/overview)
+- [如何调优提示词](https://open.dingtalk.com/document/ai-dev/ho-to-tune-prompt-words)
 - [思维链论文](https://arxiv.org/abs/2201.11903)
 - [自我反思技术](https://arxiv.org/abs/2303.11366) 

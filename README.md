@@ -33,6 +33,8 @@
 |------|----------|----------|----------|
 | **模块一** | 大模型实战入门与环境搭建 | Python环境、GPU配置、API调用 | 环境配置与API调用实战 |
 | **模块二** | 大模型基础推理与提示词工程 | Prompt Engineering、Function Calling | 高级提示词设计与函数调用 |
+
+> 📝 **最新更新**: 已修复 Chapter 02 中所有 Jupyter Notebook 的目录导航问题，现在可以正常点击目录链接跳转到对应章节。详见 [导航修复指南](chapter02-llm-prompt/JUPYTER_NAVIGATION_GUIDE.md)。
 | **模块三** | VLLM高性能模型推理与压测 | VLLM部署、性能优化、压测 | 本地模型部署与性能测试 |
 | **模块四** | MCP项目实战 | MCP优势、应用场景 | AI 旅行规划 MCP 智能体 |
 | **模块五** | RAG项目实战 | RAG架构、向量数据库、MCP | 企业文档智能问答系统 |

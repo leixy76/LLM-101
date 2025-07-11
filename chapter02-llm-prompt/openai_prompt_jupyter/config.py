@@ -197,13 +197,14 @@ def setup_notebook_environment():
     print_config_info()
     
     # 创建get_completion函数
-    def get_completion(prompt: str, system_prompt: str = ""):
+    def get_completion(prompt: str, system_prompt: str = "", prefill: str = ""):
         """
         获取GPT的完成响应
         
         参数:
             prompt (str): 用户提示
             system_prompt (str): 系统提示（可选）
+            prefill (str): 预填充文本（可选），用于引导GPT的响应开始
         
         返回:
             str: GPT的响应文本
@@ -218,6 +219,12 @@ def setup_notebook_environment():
         # 添加用户消息
         messages.append({"role": "user", "content": prompt})
         
+        # 如果有预填充内容，添加助手消息来模拟预填充效果
+        if prefill:
+            messages.append({"role": "assistant", "content": prefill})
+            # 再添加一个用户消息请求继续
+            messages.append({"role": "user", "content": "请继续完成响应。"})
+        
         # 调用OpenAI API
         response = client.chat.completions.create(
             model=model_name,              # 模型名称 (gpt-4o 或 deepseek-r1)
@@ -225,7 +232,12 @@ def setup_notebook_environment():
             max_tokens=2000,              # 最大token数
             temperature=0.0               # 温度参数，0表示更确定性
         )
-        return response.choices[0].message.content
+        
+        # 如果有预填充内容，将其与生成的内容组合
+        if prefill:
+            return prefill + response.choices[0].message.content
+        else:
+            return response.choices[0].message.content
     
     return client, get_completion
 

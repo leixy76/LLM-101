@@ -122,7 +122,7 @@ cd LLM-101
 chmod +x chapter01-llm-env/setup_llm101_dev.sh
 ./chapter01-llm-env/setup_llm101_dev.sh
 
-# 3. 激活环境
+# 5. 激活环境
 conda activate llm101
 ```
 

@@ -154,25 +154,84 @@ fi
 # 检查是否已安装 Conda
 if ! command -v conda &> /dev/null; then
     echo "🐍 安装 Miniconda..."
-    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh
-    bash ~/miniconda.sh -b -p $HOME/miniconda
-    echo 'export PATH="$HOME/miniconda/bin:$PATH"' >> ~/.bashrc
-    source ~/.bashrc
-    rm ~/miniconda.sh
+    
+    # 创建临时目录
+    TEMP_DIR=$(mktemp -d)
+    cd "$TEMP_DIR"
+    
+    # 下载 Miniconda
+    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+    
+    # 安装 Miniconda 到 ~/miniconda3 目录
+    bash miniconda.sh -b -p $HOME/miniconda3
+    
+    # 添加到环境变量
+    echo 'export PATH="$HOME/miniconda3/bin:$PATH"' >> ~/.bashrc
+    
+    # 立即加载环境变量
+    export PATH="$HOME/miniconda3/bin:$PATH"
+    
+    # 初始化 conda
+    $HOME/miniconda3/bin/conda init bash
+    
+    # 清理安装文件
+    cd /
+    rm -rf "$TEMP_DIR"
+    
+    echo "✅ Miniconda 安装完成"
 else
     echo "✅ Conda 已安装"
 fi
 
 # 初始化 Conda
 echo "🔧 初始化 Conda..."
-source $HOME/miniconda/etc/profile.d/conda.sh
+if [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
+    source $HOME/anaconda3/etc/profile.d/conda.sh
+elif [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
+    source $HOME/miniconda3/etc/profile.d/conda.sh
+elif [ -f "$HOME/miniconda/etc/profile.d/conda.sh" ]; then
+    source $HOME/miniconda/etc/profile.d/conda.sh
+else
+    echo "⚠️  Conda 配置文件未找到，尝试重新加载环境变量..."
+    source ~/.bashrc
+fi
 
 
 
 
 # 创建虚拟环境
 echo "🌟 创建 LLM-101 虚拟环境..."
-conda create -n llm101 python=3.10.18 -y
+
+# 确保 conda 命令可用
+if ! command -v conda &> /dev/null; then
+    echo "⚠️  Conda 命令不可用，尝试重新加载环境变量..."
+    source ~/.bashrc
+    
+    # 如果还是不可用，手动设置路径
+    if ! command -v conda &> /dev/null; then
+        if [ -f "$HOME/anaconda3/bin/conda" ]; then
+            export PATH="$HOME/anaconda3/bin:$PATH"
+        elif [ -f "$HOME/miniconda3/bin/conda" ]; then
+            export PATH="$HOME/miniconda3/bin:$PATH"
+        elif [ -f "$HOME/miniconda/bin/conda" ]; then
+            export PATH="$HOME/miniconda/bin:$PATH"
+        else
+            echo "❌ 无法找到 conda 命令，请检查 Conda 安装"
+            exit 1
+        fi
+    fi
+fi
+
+# 检查环境是否已存在
+if conda env list | grep -q "^llm101\s"; then
+    echo "✅ llm101 环境已存在"
+else
+    echo "🔧 创建 llm101 虚拟环境..."
+    conda create -n llm101 python=3.10.18 -y
+fi
+
+# 激活虚拟环境
+echo "🔧 激活 llm101 虚拟环境..."
 conda activate llm101
 
 # 安装项目依赖
@@ -261,16 +320,21 @@ echo ""
 echo "🎉 LLM-101 环境配置完成！"
 echo ""
 echo "📋 下一步操作："
-echo "1. 激活虚拟环境: conda activate llm101"
-echo "2. 复制环境变量: cp env.template .env"
-echo "3. 编辑 .env 文件，填入您的 API Keys"
-echo "4. 检查GPU和CUDA环境: python chapter01-llm-env/check_gpu_cuda.py"
-echo "5. 启动 Jupyter Lab: ./chapter01-llm-env/start_jupyter.sh your_password"
-echo "6. 运行第一个应用: python first_llm_app.py"
+echo "1. 重新加载环境变量: source ~/.bashrc"
+echo "2. 激活虚拟环境: conda activate llm101"
+echo "3. 复制环境变量: cp env.template .env"
+echo "4. 编辑 .env 文件，填入您的 API Keys"
+echo "5. 检查GPU和CUDA环境: python chapter01-llm-env/check_gpu_cuda.py"
+echo "6. 启动 Jupyter Lab: ./chapter01-llm-env/start_jupyter.sh your_password"
+echo "7. 运行第一个应用: python first_llm_app.py"
 echo ""
 echo "🛠️  实用工具脚本："
 echo "• GPU/CUDA检查: python chapter01-llm-env/check_gpu_cuda.py"
 echo "• Jupyter Lab启动: ./chapter01-llm-env/start_jupyter.sh [password]"
+echo ""
+echo "⚠️  重要提示："
+echo "• 如果 conda 命令不可用，请运行: source ~/.bashrc"
+echo "• 如果仍有问题，请重新启动终端或重新登录"
 echo ""
 echo "🔗 更多信息请查看 README.md"
 echo "💡 如有问题，请访问项目 GitHub 仓库获取帮助"

@@ -52,7 +52,8 @@
 - **CPU**: >= 2 C
 - **内存**: >= 16GB RAM
 - **存储**: >= 100GB 可用空间
-- **GPU**: NVIDIA GPU (可选)
+- **GPU**: NVIDIA GPU (可选，推荐用于模型微调和推理加速)
+- **CUDA**: 12.1 (GPU 环境必需)
 
 ### 必要的API Keys
 在开始之前，请准备以下API Keys中的至少一个：
@@ -60,17 +61,66 @@
 - [OpenAI API Key(国内代理)](https://www.apiyi.com/register/?aff_code=we80)
 - [DeepSeek API Key](https://platform.deepseek.com/api-keys)
   
+### 配置外网访问
+
+> **适用系统：** Linux  
+> **用途：** 确保顺利访问Google、HuggingFace、Docker Hub、GitHub等海外服务
+
+#### 操作步骤
+
+**1. 购买代理服务**
+- 注册地址：https://yundong.xn--xhq8sm16c5ls.com/#/register?code=RQKCnEWf
+- 选择适合的套餐完成购买
+
+**2. 安装 V2rayA 客户端**
+- 官方安装教程：https://v2raya.org/docs/prologue/installation/debian/
+- 按照教程完成 V2rayA 的安装和配置
+
+**3. 导入订阅链接**
+- 获取订阅链接：https://yundong.xn--xhq8sm16c5ls.com/#/knowledge
+- 在 V2rayA 界面中导入订阅
+
+**4. 选择并启动节点**
+- 在节点列表中选择延迟较低的节点
+- 点击左上角的"启动"按钮激活代理
+
+**5. 配置代理模式**
+- 访问 V2rayA 管理界面：http://127.0.0.1:2017/
+- 进入 **设置** → **透明代理/系统代理**
+- 选择：**"分流规则与规则端口所选模式一致"**
+
+#### 验证配置
+```bash
+# 测试外网连接
+curl -I https://www.google.com
+curl -I https://huggingface.co
+```
 
 ### 方法一：自动化脚本（推荐）
 
 ```bash
-# 1. 克隆项目
+# 1. Git安装(已安装请忽略)
+## 更新包列表
+sudo apt update
+## 安装 Git 
+sudo apt install git -y
+## 验证Git是否成功安装
+git --version
+
+# 2. Git配置（PUSH需要）
+## 配置用户名
+git config --global user.name "Your Name"
+## 配置用户邮箱
+git config --global user.email "your.email@example.com"
+
+
+# 3. 克隆项目
 git clone https://github.com/FlyAIBox/LLM-101.git
 cd LLM-101
 
-# 2. 运行自动化配置脚本
-chmod +x setup_linux.sh
-./setup_linux.sh
+# 4. 运行自动化配置脚本
+chmod +x chapter01-llm-env/setup_llm101_dev.sh
+./chapter01-llm-env/setup_llm101_dev.sh
 
 # 3. 激活环境
 conda activate llm101
@@ -78,7 +128,54 @@ conda activate llm101
 
 ### 方法二：手动安装
 
-#### 1. Conda环境管理
+#### 1. GPU驱动与CUDA配置（可选/微调才会用到）
+
+```bash
+# 检查GPU硬件
+lspci | grep -i nvidia
+
+# 检查GPU状态（如果已安装驱动）
+nvidia-smi
+
+# 安装NVIDIA GPU驱动（Ubuntu 22.04）
+sudo apt install -y ubuntu-drivers-common
+sudo ubuntu-drivers autoinstall
+# 安装完成后需要重启系统
+sudo reboot
+
+# 安装CUDA 12.1
+wget https://developer.download.nvidia.com/compute/cuda/12.1.0/local_installers/cuda_12.1.0_530.30.02_linux.run
+sudo sh cuda_12.1.0_530.30.02_linux.run --silent --toolkit --toolkitpath=/usr/local/cuda-12.1 --no-opengl-libs --override
+
+# 设置环境变量
+echo 'export PATH="/usr/local/cuda-12.1/bin:$PATH"' >> ~/.bashrc
+echo 'export LD_LIBRARY_PATH="/usr/local/cuda-12.1/lib64:$LD_LIBRARY_PATH"' >> ~/.bashrc
+source ~/.bashrc
+
+# 验证CUDA安装
+nvcc --version
+```
+
+#### 2. Python 3.10.18 安装
+
+```bash
+# 添加Python PPA源
+sudo add-apt-repository ppa:deadsnakes/ppa -y
+sudo apt update
+
+# 安装Python 3.10和相关工具
+sudo apt install -y \
+    python3.10 \
+    python3.10-dev \
+    python3.10-distutils \
+    python3.10-venv \
+    python3-pip
+
+# 验证安装
+python3.10 --version
+```
+
+#### 3. Conda环境管理
 
 ```bash
 # 安装Miniconda
@@ -94,26 +191,22 @@ conda create -n llm101 python=3.10.18
 conda activate llm101
 ```
 
-#### 2. GPU驱动与CUDA配置（可选/微调才会用到）
+#### 4. Jupyter Lab 安装和配置
 
 ```bash
-# 检查GPU状态
-nvidia-smi
+# 安装Jupyter Lab
+conda install -c conda-forge jupyterlab -y
 
-# 安装CUDA Toolkit (推荐版本 11.8 或 12.1)
-conda install nvidia/label/cuda-11.8.0::cuda-toolkit
+# 生成配置文件
+jupyter lab --generate-config
 
-# 验证CUDA安装
-nvcc --version
+# 后台启动（替换your_password为您的密码）
+nohup jupyter lab --port=8000 --NotebookApp.token='your_password' --notebook-dir=./ &
+
+# 访问地址: http://localhost:8000 或 http://your_server_ip:8000
 ```
 
-#### 3. 核心依赖安装
-
-```bash
-pip install -r requirements.txt
-```
-
-#### 4. Git安装和配置
+#### 5. Git安装和配置
 
 ```bash
 # Git安装(已安装请忽略)
@@ -131,15 +224,19 @@ git config --global user.name "Your Name"
 ## 配置用户邮箱
 git config --global user.email "your.email@example.com"
 ```
-## 🎯 第一个大模型应用
 
-### 1. API调用示例
-创建并运行您的第一个大模型应用：
-```python
+#### 6. 克隆项目
+```bash
+git clone https://github.com/FlyAIBox/LLM-101.git
+cd LLM-101
 ```
 
-### 2. 提示词工程示例
+## 🎯 第一个大模型应用
+
+### API调用示例
+创建并运行您的第一个大模型应用：
 ```python
+
 ```
 
 ## 🎉 完成第一个应用后

@@ -235,8 +235,8 @@ echo "🔧 激活 llm101 虚拟环境..."
 conda activate llm101
 
 # 安装项目依赖
-# echo "📚 安装项目依赖..."
-# pip install -r requirements.txt
+echo "📚 安装项目依赖..."
+pip install -r requirements.txt
 
 # 安装和配置 Jupyter Lab
 echo "📓 安装 Jupyter Lab..."

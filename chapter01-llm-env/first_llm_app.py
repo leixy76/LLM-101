@@ -1,4 +1,4 @@
- #!/usr/bin/env python3
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 🚀 第一个大模型应用 - 快速入门示例
@@ -12,6 +12,7 @@
 """
 
 import os
+from pathlib import Path
 from dotenv import load_dotenv
 from openai import OpenAI
 
@@ -20,20 +21,31 @@ def main():
     print("🚀 LLM-101: 第一个大模型应用")
     print("=" * 50)
     
-    # 1. 加载环境变量配置
-    load_dotenv()
+    # 1. 加载环境变量配置 - 从项目根目录读取.env文件
+    # 获取项目根目录路径（当前脚本所在目录的上级目录）
+    project_root = Path(__file__).parent.parent
+    env_file = project_root / ".env"
+    
+    # 加载环境变量文件
+    load_dotenv(dotenv_path=env_file)
+    
+    # 显示环境文件路径信息
+    print(f"📁 项目根目录: {project_root}")
+    print(f"📄 环境文件路径: {env_file}")
+    print(f"📋 环境文件存在: {'✅ 是' if env_file.exists() else '❌ 否'}")
     
     # 2. 获取API配置
     api_key = os.getenv('OPENAI_API_KEY')
-    base_url = os.getenv('OPENAI_BASE_URL', 'https://api.openai.com/v1')
-    model = os.getenv('DEFAULT_MODEL', 'gpt-3.5-turbo')
+    base_url = os.getenv('OPENAI_BASE_URL')
+    model = os.getenv('DEFAULT_MODEL')
     
     # 3. 检查API密钥
     if not api_key:
         print("❌ 错误：未找到API密钥！")
         print("请确保：")
-        print("1. 已创建.env文件（可从env.template复制）")
+        print("1. 已在项目根目录创建.env文件（可从env.template复制）")
         print("2. 在.env文件中设置了OPENAI_API_KEY")
+        print(f"3. 环境文件路径: {env_file}")
         return
     
     # 4. 初始化OpenAI客户端

@@ -56,7 +56,8 @@
 
 ### 必要的API Keys
 在开始之前，请准备以下API Keys中的至少一个：
-- [OpenAI API Key](https://platform.openai.com/api-keys)
+- [OpenAI API Key(官方)](https://platform.openai.com/api-keys)
+- [OpenAI API Key(国内代理)](https://www.apiyi.com/register/?aff_code=we80)
 - [DeepSeek API Key](https://platform.deepseek.com/api-keys)
   
 
@@ -68,16 +69,11 @@ git clone https://github.com/FlyAIBox/LLM-101.git
 cd LLM-101
 
 # 2. 运行自动化配置脚本
-chmod +x setup_env.sh
-./setup_env.sh
+chmod +x setup_linux.sh
+./setup_linux.sh
 
 # 3. 激活环境
 conda activate llm101
-
-# 4. 配置API Keys
-cp .env.template .env
-# 编辑 .env 文件，填入您的API Keys
-vim .env
 ```
 
 ### 方法二：手动安装
@@ -86,11 +82,15 @@ vim .env
 
 ```bash
 # 安装Miniconda
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-bash Miniconda3-latest-Linux-x86_64.sh
+mkdir -p ~/miniconda3
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
+bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
+rm -rf ~/miniconda3/miniconda.sh
 
 # 创建虚拟环境
+# 创建一个新的、名为 llm101 的 Conda 虚拟环境，并指定在这个环境中安装 Python 3.10.18 版本。它提供了一个隔离的工作空间，避免项目间的依赖冲突。
 conda create -n llm101 python=3.10.18
+# 用于激活并进入 llm101 这个虚拟环境。
 conda activate llm101
 ```
 
@@ -113,11 +113,22 @@ nvcc --version
 pip install -r requirements.txt
 ```
 
-#### 4. Git配置
+#### 4. Git安装和配置
 
 ```bash
+# Git安装(已安装请忽略)
+## 更新包列表
+sudo apt update
+## 安装 Git 
+sudo apt install git -y
+## 验证Git是否成功安装
+git --version
+
+
 # Git配置
+## 配置用户名
 git config --global user.name "Your Name"
+## 配置用户邮箱
 git config --global user.email "your.email@example.com"
 ```
 ## 🎯 第一个大模型应用

@@ -51,6 +51,7 @@ Google Colab（Colaboratory）是 Google 提供的一个免费的云端 Jupyter 
 
 3. **验证手机号码**
    - 输入手机号码接收验证码
+   - 可以使用https://sms-activate.io/购买国外虚拟账号
    - 输入收到的验证码完成验证
 
 4. **完成账户设置**

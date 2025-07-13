@@ -253,7 +253,7 @@ exports/
 plots/
 figures/
 *.png
-*.jpg
+# *.jpg
 *.jpeg
 *.gif
 *.svg

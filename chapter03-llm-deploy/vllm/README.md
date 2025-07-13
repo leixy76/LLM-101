@@ -37,14 +37,48 @@
 - 需要企业级高可用部署的生产项目
 - 对延迟要求极高的实时应用
 
-## 🚀 项目亮点
+## 📊 项目特色
 
-### 技术创新点
-1. **内存优化策略**: FP16 + 动态显存管理
-2. **流式响应**: Server-Sent Events 实时交互
-3. **零配置部署**: 一键式环境准备和服务启动
-4. **生产级监控**: 完整的健康检查和性能指标
-   
+### 🎯 技术亮点
+- **内存优化**: 使用 FP16 精度，15GB 显存轻松运行 1.5B 模型
+- **高并发支持**: VLLM 引擎支持批量推理和连续批处理
+- **流式响应**: 支持 Server-Sent Events (SSE) 实时流式输出
+- **OpenAI 兼容**: API 接口完全兼容 OpenAI ChatGPT 格式
+
+### 🛡️ 生产级特性
+- **健康监控**: 内置服务健康检查和状态监控
+- **错误处理**: 完善的异常捕获和错误响应机制
+- **日志记录**: 详细的请求日志和性能指标
+- **安全防护**: 请求验证和速率限制
+
+## 🔧 核心技术架构
+
+```mermaid
+graph TB
+    A["👤 用户"] --> B["🌐 Ngrok 隧道<br/>公网访问"]
+    B --> C["🚀 FastAPI 服务<br/>RESTful API"]
+    C --> D["⚡ VLLM 推理引擎<br/>高性能推理"]
+    D --> E["🧠 DeepSeek R1 模型<br/>1.5B 参数"]
+    E --> D
+    D --> C
+    C --> F["📡 流式响应<br/>Server-Sent Events"]
+    F --> B
+    B --> A
+    
+    G["☁️ Google Colab"] --> H["🎮 Tesla T4 GPU<br/>15GB 显存"]
+    H --> D
+    
+    I["📊 监控面板"] --> C
+    J["📝 API 文档"] --> C
+    K["🔍 健康检查"] --> C
+    
+    style A fill:#e1f5fe
+    style E fill:#f3e5f5
+    style G fill:#e8f5e8
+    style H fill:#fff3e0
+```
+
+
 ## 🚀 快速开始
 
 在运行之前，请确保您具备：
@@ -124,47 +158,6 @@ response = requests.post("https://你的地址.ngrok.io/v1/chat/completions", js
 print(response.json())
 ```
 
-## 📊 项目特色
-
-### 🎯 技术亮点
-- **内存优化**: 使用 FP16 精度，15GB 显存轻松运行 1.5B 模型
-- **高并发支持**: VLLM 引擎支持批量推理和连续批处理
-- **流式响应**: 支持 Server-Sent Events (SSE) 实时流式输出
-- **OpenAI 兼容**: API 接口完全兼容 OpenAI ChatGPT 格式
-
-### 🛡️ 生产级特性
-- **健康监控**: 内置服务健康检查和状态监控
-- **错误处理**: 完善的异常捕获和错误响应机制
-- **日志记录**: 详细的请求日志和性能指标
-- **安全防护**: 请求验证和速率限制
-
-## 🔧 核心技术架构
-
-```mermaid
-graph TB
-    A["👤 用户"] --> B["🌐 Ngrok 隧道<br/>公网访问"]
-    B --> C["🚀 FastAPI 服务<br/>RESTful API"]
-    C --> D["⚡ VLLM 推理引擎<br/>高性能推理"]
-    D --> E["🧠 DeepSeek R1 模型<br/>1.5B 参数"]
-    E --> D
-    D --> C
-    C --> F["📡 流式响应<br/>Server-Sent Events"]
-    F --> B
-    B --> A
-    
-    G["☁️ Google Colab"] --> H["🎮 Tesla T4 GPU<br/>15GB 显存"]
-    H --> D
-    
-    I["📊 监控面板"] --> C
-    J["📝 API 文档"] --> C
-    K["🔍 健康检查"] --> C
-    
-    style A fill:#e1f5fe
-    style E fill:#f3e5f5
-    style G fill:#e8f5e8
-    style H fill:#fff3e0
-```
-
 
 ## ⚙️ 配置参数说明
 
@@ -190,22 +183,6 @@ API_CONFIG = {
     "max_concurrent_requests": 10
 }
 ```
-
-## 🔍 性能指标
-
-### 硬件要求
-| 组件 | 免费版本 | 推荐配置 |
-|------|----------|----------|
-| GPU | Tesla T4 (15GB) | V100/A100 |
-| CPU | 2 核心 | 4+ 核心 |
-| 内存 | 12GB | 16GB+ |
-| 存储 | 100GB | 200GB+ |
-
-### 性能表现
-- **首次响应时间**: ~2-3 秒
-- **流式响应延迟**: ~100-200ms
-- **并发处理能力**: 5-10 个请求
-- **吞吐量**: ~20-30 tokens/秒
 
 ## 🚧 常见问题解决
 

@@ -39,7 +39,7 @@ Ngrok 是一个强大的内网穿透工具，可以将您在本地（或 Colab�
    
    方式二：第三方登录
    - GitHub 账户登录
-   - Google 账户登录
+   - Google 账户登录(推荐)
    - Microsoft 账户登录
    ```
 

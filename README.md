@@ -10,13 +10,13 @@
 
 **🚀 开始您的大模型之旅吧！**<br/>
 
-[📖 教程文档](#-教程文档) • [🚀 环境搭建](#-环境搭建) • [🛠️ 技术栈](#️-技术栈) • [🎯 实战项目](#-实战项目) 
+[📖 课程内容](#-课程内容) • [🚀 环境搭建](#-环境搭建) • [🎯 实战项目](#-实战项目) 
 
 </div>
 
 ---
 
-## 📖 教程文档
+## 📖 课程内容
 
 本课程采用理论与实践相结合的方式，从零基础开始，逐步深入大模型的各个核心技术领域。每个模块都包含详细的理论讲解和实战练习，确保能够真正掌握大模型开发的核心技能。
 
@@ -33,13 +33,67 @@
 |------|----------|----------|----------|
 | **模块一** | 大模型实战入门与环境搭建 | Python环境、GPU配置、API调用 | 环境配置与API调用实战 |
 | **模块二** | 大模型基础推理与提示词工程 | Prompt Engineering、Function Calling | 高级提示词设计与函数调用 |
-| **模块三** | VLLM高性能模型推理与压测 | VLLM部署、性能优化、压测 | 本地模型部署与性能测试 |
+| **模块三** | VLLM高性能模型推理与压测 | vLLM部署、性能优化、压测 | 本地模型部署与性能测试 |
 | **模块四** | MCP项目实战 | MCP优势、应用场景 | AI 旅行规划 MCP 智能体 |
-| **模块五** | RAG项目实战 | RAG架构、向量数据库、MCP | 企业文档智能问答系统 |
-| **模块六** | Agent项目实战 | LangChain Agents、AutoGen、Ango | AI旅行助手与智慧园区助理 |
+| **模块五** | RAG项目实战 | RAG架构、向量数据库、RAG集成MCP | 企业文档智能问答系统 |
+| **模块六** | Agent项目实战 | LangChain Agents、AutoGen、Ango | AI旅行助手 |
 | **模块七** | n8n工作流自动化实战 | 可视化工作流、API集成 | 社交媒体内容审核工作流 |
 | **模块八** | 大模型高效微调 | LoRA、Q-LoRA、LlamaFactory | 法律领域模型微调 |
-| **模块九** | 企业级项目落地 | 架构设计、部署运维、监控 | 智能咨询助手 |
+
+
+### 🛠️ 课程技术栈
+
+#### 🤖 大模型基础
+
+| 技术分类 | 核心技术 | 主要工具/框架 |
+|----------|----------|---------------|
+| **模型推理** | VLLM、TGI、Ollama | PyTorch、Transformers、CUDA |
+| **API调用** | OpenAI API、DeepSeek API | HTTP Client、异步请求 |
+| **提示词工程** | CoT、Self-Reflection、Few-shot | Jinja2、LangChain Templates |
+
+#### 🔍 检索增强生成 (RAG)
+
+| 技术分类 | 核心技术 | 主要工具/框架 |
+|----------|----------|---------------|
+| **向量数据库** | 相似度检索、元数据过滤 | ChromaDB、Qdrant、Milvus |
+| **嵌入模型** | 文本向量化、多语言支持 | BGE、E5、OpenAI Embeddings |
+| **文档处理** | 分块、加载、预处理 | LangChain |
+| **检索优化** | 重排序、混合检索 | BM25、Dense Retrieval |
+
+#### 🤖 智能代理 (Agent)
+
+| 技术分类 | 核心技术 | 主要工具/框架 |
+|----------|----------|---------------|
+| **单Agent** | ReAct、Plan-and-Execute | LangChain Agents |
+| **多Agent协作** | 群聊模式、角色分工 | AutoGen、CrewAI |
+| **新一代Agent** | 自主规划、工具调用 | Ango Framework |
+| **工具集成** | Function Calling、API调用 | 自定义工具、第三方API |
+
+#### 🔧 工作流自动化
+
+| 技术分类 | 核心技术 | 主要工具/框架 |
+|----------|----------|---------------|
+| **可视化编排** | 节点连接、数据流 | n8n、Zapier |
+| **触发器** | Webhook、定时任务 | Cron、事件驱动 |
+| **集成能力** | API连接、数据转换 | HTTP请求、数据映射 |
+
+#### 🎯 模型微调
+
+| 技术分类 | 核心技术 | 主要工具/框架 |
+|----------|----------|---------------|
+| **高效微调** | LoRA、Q-LoRA、Adapter | PEFT、Usloth、LlamaFactory |
+| **全量微调** | 分布式训练、梯度累积 | DeepSpeed、FSDP |
+| **数据处理** | 数据清洗、格式转换 | Datasets、Pandas |
+| **模型评估** | 指标计算、A/B测试 | BLEU、Rouge、人工评估 |
+
+#### 🚀 部署运维
+
+| 技术分类 | 核心技术 | 主要工具/框架 |
+|----------|----------|---------------|
+| **容器化** | Docker、Kubernetes | Docker Compose、K8s |
+| **监控日志** | 性能监控、日志分析 | Grafana、ELK Stack |
+| **负载均衡** | 高可用、弹性伸缩 | Nginx、云负载均衡 |
+| **成本优化** | 模型量化、资源调度 | INT8量化、GPU调度 |
 
 ---
 
@@ -273,112 +327,7 @@ python chapter01-llm-env/first_llm_app.py
 
 🎉 恭喜！您的第一个大模型应用运行成功！
 ```
-
-## 🎉 完成第一个应用后
-恭喜您成功运行了第一个大模型应用！接下来您可以：
-
-1. 📖 阅读完整的[README.md](README.md)了解课程全貌
-2. 🚀 选择感兴趣的章节深入学习
-3. 💡 尝试修改代码，探索更多可能性
-4. 🌟 给项目一个Star，支持我们的工作
-
 ---
-
-## 🛠️ 技术栈
-
-### 🤖 大模型基础
-
-| 技术分类 | 核心技术 | 主要工具/框架 |
-|----------|----------|---------------|
-| **模型推理** | VLLM、TGI、Ollama | PyTorch、Transformers、CUDA |
-| **API调用** | OpenAI API、DeepSeek API | HTTP Client、异步请求 |
-| **提示词工程** | CoT、Self-Reflection、Few-shot | Jinja2、LangChain Templates |
-
-### 🔍 检索增强生成 (RAG)
-
-| 技术分类 | 核心技术 | 主要工具/框架 |
-|----------|----------|---------------|
-| **向量数据库** | 相似度检索、元数据过滤 | ChromaDB、Qdrant、Milvus |
-| **嵌入模型** | 文本向量化、多语言支持 | BGE、E5、OpenAI Embeddings |
-| **文档处理** | 分块、加载、预处理 | LangChain |
-| **检索优化** | 重排序、混合检索 | BM25、Dense Retrieval |
-
-### 🤖 智能代理 (Agent)
-
-| 技术分类 | 核心技术 | 主要工具/框架 |
-|----------|----------|---------------|
-| **单Agent** | ReAct、Plan-and-Execute | LangChain Agents |
-| **多Agent协作** | 群聊模式、角色分工 | AutoGen、CrewAI |
-| **新一代Agent** | 自主规划、工具调用 | Ango Framework |
-| **工具集成** | Function Calling、API调用 | 自定义工具、第三方API |
-
-### 🔧 工作流自动化
-
-| 技术分类 | 核心技术 | 主要工具/框架 |
-|----------|----------|---------------|
-| **可视化编排** | 节点连接、数据流 | n8n、Zapier |
-| **触发器** | Webhook、定时任务 | Cron、事件驱动 |
-| **集成能力** | API连接、数据转换 | HTTP请求、数据映射 |
-
-### 🎯 模型微调
-
-| 技术分类 | 核心技术 | 主要工具/框架 |
-|----------|----------|---------------|
-| **高效微调** | LoRA、Q-LoRA、Adapter | PEFT、Usloth、LlamaFactory |
-| **全量微调** | 分布式训练、梯度累积 | DeepSpeed、FSDP |
-| **数据处理** | 数据清洗、格式转换 | Datasets、Pandas |
-| **模型评估** | 指标计算、A/B测试 | BLEU、Rouge、人工评估 |
-
-### 🚀 部署运维
-
-| 技术分类 | 核心技术 | 主要工具/框架 |
-|----------|----------|---------------|
-| **容器化** | Docker、Kubernetes | Docker Compose、K8s |
-| **监控日志** | 性能监控、日志分析 | Grafana、ELK Stack |
-| **负载均衡** | 高可用、弹性伸缩 | Nginx、云负载均衡 |
-| **成本优化** | 模型量化、资源调度 | INT8量化、GPU调度 |
-
----
-
-## 📁 项目结构
-
-```
-LLM-101/
-├── chapter01-llm-env/          # 模块一：环境搭建
-│   ├── conda_setup/            # Conda环境配置
-│   ├── gpu_setup/              # GPU驱动配置
-│   └── api_examples/           # API调用示例
-├── chapter02-llm-prompt/       # 模块二：提示词工程
-│   ├── basic_prompts/          # 基础提示词
-│   ├── advanced_techniques/    # 高级技巧(CoT、Self-Reflection)
-│   └── function_calling/       # 函数调用实战
-├── chapter03-llm-agent/        # 模块三：VLLM推理
-│   ├── vllm_deployment/        # VLLM部署
-│   ├── performance_testing/    # 性能测试
-│   └── optimization/           # 性能优化
-├── chapter04-llm-mcp/          # 模块四：RAG与MCP
-│   ├── rag_pipeline/           # RAG管道
-│   ├── vector_databases/       # 向量数据库
-│   └── mcp_implementation/     # MCP实现
-├── chapter05-llm-rag/          # 模块五：Agent实战
-│   ├── langchain/              # LangChain Agents
-│   │   ├── single_agent/       # 单Agent实现
-│   │   └── tools_integration/  # 工具集成
-│   └── ango/                   # Ango Framework
-│       └── ai_travel_agent/    # 🛫 AI旅行助手
-├── chapter06-llm-n8n/          # 模块六：n8n工作流
-│   ├── setup/                  # n8n环境搭建
-│   ├── basic_workflows/        # 基础工作流
-│   └── ai_workflows/           # AI工作流实战
-├── chapter07-llm_finetuning/   # 模块七：模型微调
-│   ├── llamafactory_setup/     # LlamaFactory配置
-│   ├── lora_finetuning/        # LoRA微调实战
-│   └── model_evaluation/       # 模型评估
-└── chapter08-llm-project/      # 模块八：企业级项目
-    ├── architecture_design/    # 架构设计
-    ├── legal_assistant/        # 智能法律助手
-    └── deployment/             # 部署运维
-```
 
 ## 🎯 实战项目
 

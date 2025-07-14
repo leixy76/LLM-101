@@ -276,3 +276,6 @@ ai_travel_planner_mcp_agent_team/
 ---
 
 **注意**：此应用程序需要有效的 API 密钥才能正常工作。请确保您已获得所有必需的 API 访问权限。 
+
+## 参考
+1. [模型上下文协议（MCP）简介](https://huggingface.co/learn/mcp-course/unit1/introduction)

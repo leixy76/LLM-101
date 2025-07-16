@@ -362,3 +362,4 @@ dmypy.json
 # deployment/
 # k8s/
 # helm/
+chapter07-llm-n8n/rag-knowledge-assistant/README.md

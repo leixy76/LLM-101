@@ -117,8 +117,10 @@ start_ngrok() {
         log_debug "获取已运行ngrok的URL..."
         WEBHOOK_URL=$(get_ngrok_url)
         if [ $? -eq 0 ] && [ -n "$WEBHOOK_URL" ]; then
-            echo $WEBHOOK_URL > $WEBHOOK_URL_FILE
-            log_info "使用已运行的ngrok隧道: $WEBHOOK_URL"
+            # 清理并保存URL
+            CLEAN_URL=$(echo "$WEBHOOK_URL" | grep -o 'https://[^[:space:]]*\.ngrok[^[:space:]]*\.app' | head -1)
+            echo $CLEAN_URL > $WEBHOOK_URL_FILE
+            log_info "使用已运行的ngrok隧道: $CLEAN_URL"
             return 0
         else
             log_warn "无法获取已运行ngrok的URL，尝试重启ngrok"
@@ -143,8 +145,10 @@ start_ngrok() {
         return 1
     fi
 
-    echo $WEBHOOK_URL > $WEBHOOK_URL_FILE
-    log_info "ngrok隧道已启动: $WEBHOOK_URL"
+    # 清理并保存URL
+    CLEAN_URL=$(echo "$WEBHOOK_URL" | grep -o 'https://[^[:space:]]*\.ngrok[^[:space:]]*\.app' | head -1)
+    echo $CLEAN_URL > $WEBHOOK_URL_FILE
+    log_info "ngrok隧道已启动: $CLEAN_URL"
     return 0
 }
 

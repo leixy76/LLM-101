@@ -562,3 +562,7 @@ def batch_process_prompts(prompts, batch_size=5):
 ---
 
 🎉 **开始你的大模型提示词工程之旅吧！** 从 `openai_prompt_jupyter/00_Tutorial_How-To.ipynb` 开始，逐步掌握这项改变世界的技术！ 
+
+
+## 参考
+- [Kiro的原始Prompt](https://gist.github.com/CypherpunkSamurai/ad7be9c3ea07cf4fe55053323012ab4d)

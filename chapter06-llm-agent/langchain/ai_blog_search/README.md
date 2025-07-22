@@ -1,7 +1,7 @@
-# Agentic RAG with LangGraph: AI Blog Search
+# 基于LangGraph的智能RAG系统：AI博客搜索
 
-## Overview
-AI Blog Search is an Agentic RAG application designed to enhance information retrieval from AI-related blog posts. This system leverages LangChain, LangGraph, and Google's Gemini model to fetch, process, and analyze blog content, providing users with accurate and contextually relevant answers.
+## 项目概述
+AI博客搜索是一个智能RAG（检索增强生成）应用程序，专门用于增强AI相关博客文章的信息检索能力。该系统利用LangChain、LangGraph和Google的Gemini模型来获取、处理和分析博客内容，为用户提供准确且上下文相关的答案。system leverages LangChain, LangGraph, and Google's Gemini model to fetch, process, and analyze blog content, providing users with accurate and contextually relevant answers.
 
 ## LangGraph Workflow
 ![LangGraph-Workflow](https://github.com/user-attachments/assets/07d8a6b5-f1ef-4b7e-b47a-4f14a192bd8a)

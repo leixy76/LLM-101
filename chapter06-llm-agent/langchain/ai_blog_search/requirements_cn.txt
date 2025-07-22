@@ -1,0 +1,94 @@
+# AI博客智能搜索系统 - Python依赖包列表
+# 
+# 这个文件列出了运行AI博客搜索系统所需的所有Python包
+# 使用命令安装：pip install -r requirements_cn.txt
+
+# ===== 核心框架 =====
+# LangChain - 大语言模型应用开发框架
+langchain>=0.1.0
+
+# LangGraph - 状态图工作流管理框架
+langgraph>=0.1.0
+
+# LangChain Hub - 预构建提示模板库
+langchainhub>=0.1.0
+
+# ===== LangChain集成组件 =====
+# LangChain社区扩展 - 包含各种文档加载器和工具
+langchain-community>=0.1.0
+
+# Google Generative AI集成 - Gemini模型支持
+langchain-google-genai>=0.1.0
+
+# Qdrant集成 - 向量数据库支持
+langchain-qdrant>=0.1.0
+
+# 文本分割器 - 智能文档分块工具
+langchain-text-splitters>=0.1.0
+
+# ===== 文本处理工具 =====
+# TikToken - OpenAI的分词器，用于准确计算token数量
+tiktoken>=0.5.0
+
+# BeautifulSoup4 - HTML解析库，用于网页内容提取
+beautifulsoup4>=4.12.0
+
+# ===== 环境配置 =====
+# Python-dotenv - 环境变量管理工具
+python-dotenv>=1.0.0
+
+# ===== Web界面框架 =====
+# Streamlit - 快速构建Web应用的Python框架
+streamlit>=1.28.0
+
+# ===== 可选依赖（推荐安装） =====
+# Requests - HTTP请求库，用于网络通信
+requests>=2.31.0
+
+# NumPy - 数值计算库，向量操作基础
+numpy>=1.24.0
+
+# Pandas - 数据处理库，用于结构化数据操作
+pandas>=2.0.0
+
+# ===== 开发和调试工具（可选） =====
+# Jupyter - 交互式开发环境
+# jupyter>=1.0.0
+
+# IPython - 增强的Python交互式shell
+# ipython>=8.0.0
+
+# ===== 安装说明 =====
+#
+# 1. 基础安装：
+#    pip install -r requirements_cn.txt
+#
+# 2. 如果遇到版本冲突，可以尝试：
+#    pip install --upgrade -r requirements_cn.txt
+#
+# 3. 在虚拟环境中安装（推荐）：
+#    python -m venv venv
+#    source venv/bin/activate  # Linux/Mac
+#    # 或 venv\Scripts\activate  # Windows
+#    pip install -r requirements_cn.txt
+#
+# 4. 验证安装：
+#    python -c "import langchain, langgraph, streamlit; print('安装成功！')"
+#
+# ===== 版本兼容性说明 =====
+#
+# - Python版本要求：3.8+（推荐3.10+）
+# - 操作系统：Windows, macOS, Linux
+# - 内存要求：至少4GB RAM（推荐8GB+）
+# - 网络要求：需要访问Google AI API和Qdrant服务
+#
+# ===== 常见问题解决 =====
+#
+# 1. 如果安装langchain-google-genai失败：
+#    pip install --upgrade google-generativeai
+#
+# 2. 如果安装qdrant-client失败：
+#    pip install --upgrade qdrant-client
+#
+# 3. 如果遇到SSL证书问题：
+#    pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org -r requirements_cn.txt

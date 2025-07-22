@@ -363,3 +363,6 @@ dmypy.json
 # k8s/
 # helm/
 chapter07-llm-n8n/rag-knowledge-assistant/README.md
+.kiro/specs/readnote_agent/tasks.md
+.kiro/specs/readnote_agent/requirements.md
+.kiro/specs/readnote_agent/design.md

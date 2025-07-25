@@ -62,12 +62,6 @@ n8n-nodes-base
 
    ![创建OAuth2凭据](https://cdn.jsdelivr.net/gh/Fly0905/note-picture@main/imag/202507171735600.png)
 
-   ```bash
-   332808334207-g0hmufkamn5ppq8hj1scbqk15behc5db.apps.googleusercontent.com
-   
-   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
-   ```
-
 6. 发布应用
 
    点击左侧的`目标对象(Audience)`, 发布应用

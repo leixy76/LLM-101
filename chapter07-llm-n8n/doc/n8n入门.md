@@ -110,6 +110,7 @@ docker run -d \
 -v /home/data/n8n_i18n/dist:/usr/local/lib/node_modules/n8n/node_modules/n8n-editor-ui/dist \
 -e WEBHOOK_URL=https://af5741fcd43e.ngrok-free.app \
 -e N8N_DEFAULT_LOCALE=zh-CN \
+ -e GENERIC_TIMEZONE=Asia/Shanghai \
 -e N8N_SECURE_COOKIE=false \
 -e N8N_RUNNERS_ENABLED=true \
 -e N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true \
